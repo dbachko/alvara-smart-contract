@@ -1,0 +1,32 @@
+[profile.default]
+src = "contracts"
+test = "test"
+out = "out"
+libs = ["node_modules", "lib"]
+solc_version = "0.8.38"
+evm_version = "prague"
+optimizer = true
+optimizer_runs = 200
+dynamic_test_linking = false
+bytecode_hash = "ipfs"
+cbor_metadata = true
+
+remappings = [
+  "@chainlink/contracts/=lib/chainlink-evm/contracts/",
+  "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+  "forge-std/=node_modules/forge-std/src/"
+]
+
+[fmt]
+line_length = 100
+tab_width = 4
+bracket_spacing = true
+ignore = ["contracts/generated/AlvaraTraitData.sol"]
+
+[profile.ci.fuzz]
+runs = 1024
+
+[profile.ci.invariant]
+runs = 256
+depth = 64
+fail_on_revert = false
